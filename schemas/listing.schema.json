@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agenttrials.dev/schemas/listing.schema.json",
+  "title": "Agent Trials Listing",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "name",
+    "company",
+    "slug",
+    "websiteUrl",
+    "trialUrl",
+    "category",
+    "description",
+    "trialTerms"
+  ],
+  "properties": {
+    "name": { "type": "string", "minLength": 2, "maxLength": 80 },
+    "company": { "type": "string", "minLength": 2, "maxLength": 80 },
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "minLength": 2,
+      "maxLength": 80
+    },
+    "websiteUrl": { "type": "string", "format": "uri" },
+    "trialUrl": { "type": "string", "format": "uri" },
+    "docsUrl": { "type": "string", "format": "uri" },
+    "logoUrl": { "type": "string", "format": "uri" },
+    "category": {
+      "type": "string",
+      "enum": [
+        "developer-tools",
+        "data",
+        "search",
+        "browser-automation",
+        "crm",
+        "sales",
+        "support",
+        "payments",
+        "finance",
+        "analytics",
+        "security",
+        "infrastructure",
+        "productivity",
+        "communications",
+        "ai-tools",
+        "other"
+      ]
+    },
+    "description": { "type": "string", "minLength": 20, "maxLength": 240 },
+    "trialTerms": { "type": "string", "minLength": 10, "maxLength": 240 }
+  }
+}

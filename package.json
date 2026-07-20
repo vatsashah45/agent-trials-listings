@@ -1,0 +1,10 @@
+{
+  "name": "agent-trials-listings",
+  "version": "0.1.0",
+  "private": false,
+  "license": "MIT",
+  "scripts": {
+    "validate:listings": "node scripts/validate-listings.mjs"
+  },
+  "devDependencies": {}
+}
