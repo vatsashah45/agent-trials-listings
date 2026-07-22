@@ -1,0 +1,11 @@
+{
+  "name": "Example Agent API",
+  "company": "Example Labs",
+  "slug": "example-agent-api",
+  "websiteUrl": "https://example.com",
+  "trialUrl": "https://example.com/free-trial",
+  "docsUrl": "https://example.com/docs",
+  "category": "developer-tools",
+  "description": "Test-only listing for validating the public Agent Trials issue-based submission flow.",
+  "trialTerms": "Test-only 14-day free trial. No real offer."
+}
