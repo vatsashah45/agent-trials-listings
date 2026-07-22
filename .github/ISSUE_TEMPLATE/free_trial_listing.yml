@@ -1,0 +1,111 @@
+name: Free trial listing request
+description: Submit public product and trial details for Agent Trials maintainers to review.
+title: "Listing request: {Product Name}"
+labels:
+  - listing-request
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Submit one product or service trial for Agent Trials review. Include only public product and trial metadata. Do not include secrets, private credentials, private customer data, prompts, tracking pixels, or internal docs.
+  - type: input
+    id: product_name
+    attributes:
+      label: Product name
+      placeholder: Example API
+    validations:
+      required: true
+  - type: input
+    id: company_name
+    attributes:
+      label: Company name
+      placeholder: Example Co
+    validations:
+      required: true
+  - type: input
+    id: website_url
+    attributes:
+      label: Product website URL
+      placeholder: https://example.com
+    validations:
+      required: true
+  - type: input
+    id: trial_url
+    attributes:
+      label: Free trial URL
+      description: The public URL where users can start, claim, or learn about the trial.
+      placeholder: https://example.com/free-trial
+    validations:
+      required: true
+  - type: input
+    id: docs_url
+    attributes:
+      label: Docs URL, optional
+      placeholder: https://docs.example.com
+    validations:
+      required: false
+  - type: input
+    id: logo_url
+    attributes:
+      label: Logo URL, optional
+      description: Public image URL for a product or company logo.
+      placeholder: https://example.com/logo.png
+    validations:
+      required: false
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - developer-tools
+        - data
+        - search
+        - browser-automation
+        - crm
+        - sales
+        - support
+        - payments
+        - finance
+        - analytics
+        - security
+        - infrastructure
+        - productivity
+        - communications
+        - ai-tools
+        - other
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Short description
+      description: 20-240 characters. Keep it factual and public.
+      placeholder: A short factual description of what the product does.
+    validations:
+      required: true
+  - type: textarea
+    id: trial_terms
+    attributes:
+      label: Trial terms
+      description: 10-240 characters. Include duration, credits, restrictions, or card requirements if public.
+      placeholder: 14-day free trial. No credit card required.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Public evidence for official or verified claims, optional
+      description: If you claim partnership, verification, endorsement, or official status, include a public URL that supports it.
+    validations:
+      required: false
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Confirmation
+      options:
+        - label: This submission includes only public product and trial metadata.
+          required: true
+        - label: This submission does not include API keys, secrets, private credentials, private customer data, prompts, tracking pixels, or internal docs.
+          required: true
+        - label: This submission does not claim partnership, verification, endorsement, or official status unless publicly verifiable above.
+          required: true

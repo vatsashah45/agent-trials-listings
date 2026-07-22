@@ -1,0 +1,11 @@
+{
+  "name": "Valiron Pro",
+  "company": "Valiron",
+  "slug": "valiron-pro",
+  "websiteUrl": "https://www.valiron.co",
+  "trialUrl": "https://www.valiron.co/pricing?promo=AGENTTRIALS100",
+  "docsUrl": "https://www.valiron.co/docs",
+  "category": "developer-tools",
+  "description": "Trust and reputation middleware for API sellers to gate, monitor, and route autonomous agent traffic.",
+  "trialTerms": "First month free on Valiron Pro with code AGENTTRIALS100."
+}
