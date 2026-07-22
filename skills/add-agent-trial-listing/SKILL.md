@@ -1,46 +1,40 @@
 ---
 name: add-agent-trial-listing
-description: Help a seller add their public product or service trial to the Agent Trials open-source marketplace by making the required codebase change: add one structured listing JSON file under data/listings, validate it, and prepare a pull request. Use when a seller, founder, company, or agent asks to list their product, service, API, tool, free trial, credits, or offer on Agent Trials.
+description: Help a provider submit a public product or service trial to Agent Trials. External providers should file a structured GitHub issue with public trial metadata only. Maintainers may use approved issues to create one listing JSON pull request in the public listings repo.
 ---
 
 # Add Agent Trial Listing
 
-You are an agent making a code contribution to Agent Trials. Add the seller's product to the marketplace by creating one valid listing JSON file.
+Agent Trials accepts listing requests through GitHub issues in the public listings repository. External providers do not need to fork the repo or submit code changes.
 
-## Default Behavior
+## Default Behavior For Providers
 
-- Inspect the repo before editing.
-- Ask only for missing required listing fields.
-- Add exactly one listing JSON file under `data/listings`.
-- Do not run the web app locally.
-- Do not start a dev server.
-- Do not modify UI code, app routes, styles, schema files, validation scripts, package files, or existing listings for a normal listing submission.
-- Run only `pnpm validate:listings`.
-- If validation passes, provide the changed file path and PR title/body.
-- If GitHub tooling is available and the user asked for a PR, open a pull request.
+When a seller, founder, company, or agent asks to list a product, service, API, tool, free trial, credits, or offer:
 
-## What To Change
+- Do not edit files.
+- Do not create a branch.
+- Do not open a pull request.
+- Collect only the missing required public listing fields.
+- Direct the provider to the public listing request issue form.
+- If GitHub tooling is available and the user asks you to submit it, open a GitHub issue using the listing request template.
 
-Add exactly one listing JSON file:
+Issue form:
 
 ```txt
-data/listings/{company-slug}/{product-slug}.json
+https://github.com/vatsashah45/agent-trials-listings/issues/new?template=free_trial_listing.yml
 ```
 
-Do not edit app UI code for a normal listing submission. The marketplace reads listing cards and detail pages from `data/listings`.
+## Provider Submission Rules
 
-## Rules
-
-- Only include public product and trial metadata.
-- Do not include API keys, secrets, private credentials, private customer data, prompts, or internal docs.
-- Do not claim partnership, verification, endorsement, or official status unless the user provides clear public evidence.
-- Do not add tracking pixels or third-party scripts.
+- Include only public product and trial metadata.
+- Do not include API keys, secrets, private credentials, private customer data, prompts, tracking pixels, or internal docs.
+- Do not claim partnership, verification, endorsement, or official status unless the provider gives public evidence.
 - Keep descriptions factual and concise.
-- Use seller-provided URLs. If a URL is missing, ask for it instead of inventing it.
+- Use provider-supplied URLs. If a URL is missing, ask for it instead of inventing it.
 
 ## Required Fields
 
-Collect these fields before editing. If any are missing, ask for only the missing fields:
+Collect these fields before filing the issue. Ask only for missing fields:
 
 - Product name.
 - Company name.
@@ -74,34 +68,45 @@ Allowed categories:
 - `ai-tools`
 - `other`
 
-## Workflow
+## Provider Issue Body
 
-Do these steps in order:
+If GitHub issue tooling is not available, prepare this issue body for the provider:
+
+```txt
+Product name:
+Company name:
+Product website URL:
+Free trial URL:
+Docs URL, optional:
+Logo URL, optional:
+Category:
+Short description:
+Trial terms:
+Public evidence for official/verified claims, optional:
+
+Confirmation:
+- This submission includes only public product and trial metadata.
+- This submission does not include secrets, credentials, private customer data, prompts, tracking pixels, or internal docs.
+```
+
+## Maintainer Mode
+
+Only use this mode when an Agent Trials maintainer explicitly asks you to turn an approved listing issue into a pull request.
+
+In maintainer mode:
 
 1. Inspect `schemas/listing.schema.json`.
 2. Inspect nearby examples in `data/listings`.
-3. Confirm the seller has provided all required fields.
-4. Derive lowercase kebab-case slugs:
-   - Company slug: company name, for example `Example Co` -> `example-co`.
-   - Product slug: product name, for example `Example API` -> `example-api`.
-5. Create `data/listings/{company-slug}/{product-slug}.json`.
-6. Fill the listing using only public, seller-provided facts.
-7. Run `pnpm validate:listings`.
-8. Fix validation errors until the command passes.
-9. Summarize the exact file changed and prepare a pull request titled:
+3. Read the approved listing issue.
+4. Confirm all required fields are present.
+5. Derive lowercase kebab-case slugs.
+6. Create exactly one listing JSON file: `data/listings/{company-slug}/{product-slug}.json`.
+7. Fill the listing using only public facts from the issue.
+8. Run `pnpm validate:listings`.
+9. Fix validation errors until it passes.
+10. Open a pull request in `vatsashah45/agent-trials-listings`.
 
-```txt
-Add trial listing for {Product Name}
-```
-
-Suggested PR body:
-
-```txt
-Adds a public Agent Trials listing for {Product Name}.
-
-Validation:
-- pnpm validate:listings
-```
+Do not edit app code, private Agent Trials code, schemas, validation scripts, package files, existing listings, workflows, or repository settings for a normal listing PR.
 
 ## Listing Template
 
@@ -120,10 +125,39 @@ Validation:
 }
 ```
 
+Remove `docsUrl` or `logoUrl` if unavailable.
+
+## Maintainer PR
+
+PR title:
+
+```txt
+Add trial listing for {Product Name}
+```
+
+PR body:
+
+```txt
+Adds a public Agent Trials listing for {Product Name}.
+
+Source issue:
+- Closes #{issue_number}
+
+Validation:
+- pnpm validate:listings
+```
+
 ## Final Response
 
-When done, respond with only:
+For provider submissions, respond with only:
+
+- The listing request issue URL.
+- Which required fields are still missing, if any.
+- A reminder to include only public product and trial metadata.
+
+For maintainer PRs, respond with only:
 
 - Which listing file was created.
 - That `pnpm validate:listings` passed.
-- The PR title to use.
+- The PR title and URL.
+- That merge to `main` will trigger the Agent Trials deployment workflow.

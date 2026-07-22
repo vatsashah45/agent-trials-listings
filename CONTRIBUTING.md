@@ -1,86 +1,47 @@
 # Contributing A Trial Listing
 
-Use this guide to add a product trial to Agent Trials. A listing contribution should only change one JSON file under `data/listings`.
+Agent Trials accepts provider submissions through GitHub issues. External providers should not open listing pull requests directly.
 
-## Workflow
+## Provider Workflow
 
-1. Fork this repository.
-2. Create a branch:
+1. Open the listing request issue form:
 
-```bash
-git switch -c add-{product-slug}
-```
+https://github.com/vatsashah45/agent-trials-listings/issues/new?template=free_trial_listing.yml
 
-3. Add one listing JSON file under `data/listings/{company-slug}/{product-slug}.json`.
-4. Run:
+2. Fill in the public product and trial metadata.
+3. Submit the issue.
+4. Wait for maintainer review.
 
-```bash
-pnpm install
-pnpm validate:listings
-```
+Maintainers will create the listing pull request if the request is approved.
 
-5. Commit the listing file.
-6. Open a pull request to `vatsashah45/agent-trials-listings`.
+## Provider Rules
 
-Do not edit app UI, routes, styles, package files, schemas, validation scripts, telemetry, or existing listings for a normal listing submission.
-
-## Rules
-
-- Add exactly one listing JSON file per product.
+- Submit exactly one product or service trial per issue.
 - Include only public product and trial metadata.
 - Do not include API keys, secrets, private credentials, customer data, prompts, tracking pixels, or internal docs.
 - Do not claim partnership, verification, endorsement, or official status unless it is publicly verifiable.
+- Use public URLs owned or provided by the company.
 
 ## Required Fields
 
-Collect these fields before editing:
+The issue form asks for product name, company name, product website URL, free trial URL, category, short description, and trial terms.
 
-- Product name.
-- Company name.
-- Product website URL.
-- Free trial URL.
-- Category.
-- Short description.
-- Trial terms.
+Optional fields are docs URL and logo URL.
 
-Optional fields:
+Allowed categories: `developer-tools`, `data`, `search`, `browser-automation`, `crm`, `sales`, `support`, `payments`, `finance`, `analytics`, `security`, `infrastructure`, `productivity`, `communications`, `ai-tools`, `other`.
 
-- Docs URL.
-- Logo URL.
+## Maintainer Workflow
 
-Allowed categories:
+Maintainers convert approved issues into listing PRs.
 
-- `developer-tools`
-- `data`
-- `search`
-- `browser-automation`
-- `crm`
-- `sales`
-- `support`
-- `payments`
-- `finance`
-- `analytics`
-- `security`
-- `infrastructure`
-- `productivity`
-- `communications`
-- `ai-tools`
-- `other`
+1. Create a branch from `main`.
+2. Add exactly one listing JSON file: `data/listings/{company-slug}/{product-slug}.json`.
+3. Use lowercase kebab-case slugs.
+4. Run `pnpm install` and `pnpm validate:listings`.
+5. Open a PR that closes the approved issue.
+6. Merge only after validation passes.
 
-## File Path
-
-Create:
-
-```txt
-data/listings/{company-slug}/{product-slug}.json
-```
-
-Slugs must be lowercase kebab-case:
-
-```txt
-Example Co -> example-co
-Example API -> example-api
-```
+After merge to `main`, the deploy workflow triggers the private Agent Trials app to sync listings and rebuild.
 
 ## JSON Template
 
@@ -101,32 +62,6 @@ Example API -> example-api
 
 Remove `docsUrl` or `logoUrl` if they are not available.
 
-## Validate
+## Direct Pull Requests
 
-Run:
-
-```bash
-pnpm install
-pnpm validate:listings
-```
-
-Fix every validation error before opening a PR.
-
-## Pull Request
-
-Open a pull request to this repository.
-
-PR title:
-
-```txt
-Add trial listing for {Product Name}
-```
-
-PR body:
-
-```txt
-Adds a public Agent Trials listing for {Product Name}.
-
-Validation:
-- pnpm validate:listings
-```
+Direct listing pull requests from external providers may be closed and redirected to the issue form. This keeps submissions structured and gives maintainers a consistent review path.

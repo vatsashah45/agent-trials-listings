@@ -1,6 +1,8 @@
-## Listing
+## Maintainer Listing PR
 
-Product name:
+Source issue:
+
+Closes #
 
 Listing file path:
 
@@ -15,6 +17,7 @@ data/listings/{company-slug}/{product-slug}.json
 
 ## Confirmation
 
+- [ ] This PR was created by an Agent Trials maintainer from an approved listing request issue
 - [ ] This PR adds or updates exactly one trial listing
 - [ ] The listing includes only public product and trial metadata
 - [ ] The listing does not include API keys, secrets, private credentials, private customer data, prompts, tracking pixels, or internal docs
@@ -22,4 +25,4 @@ data/listings/{company-slug}/{product-slug}.json
 
 ## Notes
 
-Anything maintainers should know:
+Anything reviewers should know:
